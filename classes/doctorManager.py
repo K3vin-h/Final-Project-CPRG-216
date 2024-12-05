@@ -1,4 +1,4 @@
-from doctor import Doctor
+from classes.doctor import Doctor
 class doctorManager:
     def __init__(self):
         self.doctors = []
@@ -28,8 +28,9 @@ class doctorManager:
                     temp.append(line)
             temp.pop(0)
             for line in temp:
-                doctor = Doctor(*line.strip().split('_'))
-                self.doctors.append(doctor)
+                if len(line) > 5:
+                    doctor = Doctor(*line.strip().split('_'))
+                    self.doctors.append(doctor)
         except FileNotFoundError:
             print("The file not found")
         except Exception as error:
@@ -53,8 +54,7 @@ class doctorManager:
         
     def display_doctors_info(self,dr):
         print(f"Id   Name                   Speciality      Timing          Qualification   Room Number")
-        print()
-        print(f"{dr.Doctor_ID:<4} {dr.Doctor_name:<22} {dr.Doctor_speciality:<15} {dr.Working_time:<15} {dr.Qualification:<15} {dr.Room_number:<10}")
+        print(f"\n{dr.Doctor_ID:<4} {dr.Doctor_name:<22} {dr.Doctor_speciality:<15} {dr.Working_time:<15} {dr.Qualification:<15} {dr.Room_number:<10}")
 
     def edit_doctor_info(self):
         id = input("Please enter the id of the doctor that you want to edit their information: ")
@@ -66,14 +66,14 @@ class doctorManager:
                 dr.Qualification = input("Enter new Qualification: ")
                 dr.Room_number = input("Enter new Room number: ")
                 self.write_list_of_doctors_to_file()
+                print(f"Doctor whose ID is {id} has been edited")
                 return
         return print(f"Can't find the doctor with the same ID ({id}) on the system")
     
     def display_doctors_list(self):
         print(f"Id   Name                   Speciality      Timing          Qualification   Room Number")
-        print()
         for dr in self.doctors:
-            print(f"{dr.Doctor_ID:<4} {dr.Doctor_name:<22} {dr.Doctor_speciality:<15} {dr.Working_time:<15} {dr.Qualification:<15} {dr.Room_number:<10}\n")
+            print(f"\n{dr.Doctor_ID:<4} {dr.Doctor_name:<22} {dr.Doctor_speciality:<15} {dr.Working_time:<15} {dr.Qualification:<15} {dr.Room_number:<10}")
 
     def write_list_of_doctors_to_file(self):
         with open('data/doctors.txt', 'w') as file:
@@ -89,15 +89,15 @@ class doctorManager:
        self.write_list_of_doctors_to_file()
        print(f"Doctor whose ID is {id} has been added")
 
-def main():
-    dr_manager = doctorManager()
-    # dr_manager.display_doctors_list()
-    # # dr_manager.search_doctor_by_id()
-    # dr_manager.search_doctor_by_name()
-    # dr_manager.edit_doctor_info()
-    dr_manager.add_dr_to_file()
-    # dr_manager.display_doctors_info()
-main()
+# def main():
+#     dr_manager = doctorManager()
+#     # dr_manager.display_doctors_list()
+#     # # dr_manager.search_doctor_by_id()
+#     # dr_manager.search_doctor_by_name()
+#     # dr_manager.edit_doctor_info()
+#     dr_manager.add_dr_to_file()
+#     # dr_manager.display_doctors_info()
+# main()
 
 
 
