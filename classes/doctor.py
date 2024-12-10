@@ -1,4 +1,5 @@
 class Doctor:
+    '''doctor class with its attributes below'''
     def __init__ (self, Doctor_ID, Doctor_name, Doctor_speciality, Working_time, Qualification, Room_number):
         self.__Doctor_ID = Doctor_ID
         self.__Doctor_name = Doctor_name
@@ -6,13 +7,14 @@ class Doctor:
         self.__Working_time = Working_time
         self.__Qualification = Qualification
         self.__Room_number = Room_number
-
+    '''string representation of the doctor class'''
     def __str__(self):
         return f"{self.Doctor_ID}_{self.Doctor_name}_{self.Doctor_speciality}_{self.Working_time}_{self.Qualification}_{self.Room_number}"
-    
+    '''getter'''
     @property
     def Doctor_ID(self):
         return self.__Doctor_ID
+    '''setter'''
     @Doctor_ID.setter
     def Doctor_ID(self, Doctor_ID):
         self.__Doctor_ID = Doctor_ID
