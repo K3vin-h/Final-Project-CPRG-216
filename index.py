@@ -55,6 +55,7 @@ class Management:
         '''import the PatientManager class from the patientManager file'''
         '''the user gives an input and the program will do the following based on the input'''
         while True:
+            patient_manager.read_patients_file()
             menu = self.inputcheck(1, 5, "\nPatients Menu:\n"
                          "1 - Display patients list\n"
                          "2 - Search for patient by ID\n"
@@ -93,6 +94,6 @@ class Management:
 '''the program starts here'''
 if __name__ == "__main__":
     management = Management()
-    management.main_menu()
+    management.display_menu()
 
 
