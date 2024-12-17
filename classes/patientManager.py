@@ -28,6 +28,7 @@ class PatientManager:
     def read_patients_file(self):
         try:
             temp = []
+            self.patients = [] #clear the patients list
             with open('data/patients.txt', 'r') as file: #read the patient txt file
                 for line in file:
                     temp.append(line) #append each line to the temp list
@@ -66,7 +67,6 @@ class PatientManager:
                 patient.gender = input("Enter new gender: ")
                 patient.age = input("Enter new age: ")
                 self.write_list_of_patients_to_file()
-                self.read_patients_file()
                 return
         return print(f"Can't find the patient with the same ID ({id}) on the system")
     
@@ -90,7 +90,7 @@ class PatientManager:
             return
         self.format_patient_Info_for_file(class_) #format and append the patient information to the patients list
         self.write_list_of_patients_to_file() #write the patient information to the file
-      
+        self.read_patients_file()
         print(f"Patient with ID {id} has been added to the system")
 
 # testing purposes

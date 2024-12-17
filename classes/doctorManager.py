@@ -30,6 +30,7 @@ class doctorManager:
     def read_doctors_file(self):
         try:
             temp = []
+            self.doctors = [] #clear the doctors list
             with open('data/doctors.txt', 'r') as file: #read the doctor file
                 for line in file:
                     temp.append(line) #append each line to the temp list
@@ -37,10 +38,8 @@ class doctorManager:
             for line in temp: #for each line in the temp list
                 if len(line) > 1: #ensures that the line is not empty
                     doctor = Doctor(*line.strip().split('_'))
-                    print(doctor)
                     #split the line by each underscore, and each element that was split by the underscore will be passed as an argument for creating a doctor class
                     self.doctors.append(doctor) #append the doctor class to the doctors list
-                    print(self.doctors)
         except FileNotFoundError: #if the file is not found, display this error message
             print("The file not found")
         except Exception as error: #if there are any other errors, display error message with the error in it.

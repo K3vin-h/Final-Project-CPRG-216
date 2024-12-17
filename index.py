@@ -27,6 +27,7 @@ class Management:
         ''''import the doctorManager class from the doctorManager file'''
         '''the user gives an input and the program will do the following based on the input'''
         while True:
+            doctor_manager.read_doctors_file()
             menu = self.inputcheck(1, 6, "\nDoctors Menu:\n"
             # menu = input("\nDoctors Menu:\n"
                          "1 - Display Doctors list\n"
